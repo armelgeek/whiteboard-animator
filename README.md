@@ -7,8 +7,22 @@ An open-source, cross-platform, offline app for Android, Linux, Windows, Mac & i
 You can click on the below Image or this [Youtube Link](https://www.youtube.com/watch?v=_UuAIjSzUJQ) to see the demo. Please let me know in the comments, how do you feel about this App. <br>
 [![ImageToSketch](./docs/images/thumb.png)](https://www.youtube.com/watch?v=_UuAIjSzUJQ)
 
-## 🖧 Our Scematic Architecture
-To be added...
+## 🏗️ Architecture
+
+The project now includes two main components:
+
+1. **Kivy Desktop/Mobile App** (`kivy/`): Cross-platform GUI application for Android, Linux, Windows, and Mac
+2. **REST API** (`api/`): Structured REST API for programmatic access and integration
+
+### REST API
+
+The REST API provides a modern, modular architecture with:
+- **RESTful endpoints** for animation generation
+- **Automatic documentation** with Swagger UI
+- **Type-safe request/response validation**
+- **Service-oriented architecture** for better maintainability
+
+See the [API Documentation](api/README.md) for detailed information.
 
 ## 🧑‍💻 Quickstart Guide
 
@@ -22,6 +36,8 @@ You can check the [Releases](https://github.com/daslearning-org/image-to-animati
 
 ### 🐍 Run with Python
 
+#### Option 1: Run the Kivy GUI Application
+
 1. Clone the repo
 ```bash
 git clone https://github.com/daslearning-org/image-to-animation-offline.git
@@ -33,6 +49,31 @@ cd image-to-animation-offline/kivy/
 pip install -r requirements.txt # virtual environment is recommended
 python main.py
 ```
+
+#### Option 2: Run the REST API
+
+1. Navigate to the API directory
+```bash
+cd image-to-animation-offline/api/
+```
+
+2. Install dependencies
+```bash
+pip install -r requirements.txt
+```
+
+3. Start the API server
+```bash
+python app.py
+# or
+uvicorn app:app --reload --host 0.0.0.0 --port 8000
+```
+
+4. Access the API documentation
+- Interactive docs: http://localhost:8000/docs
+- API documentation: http://localhost:8000/redoc
+
+See [API Documentation](api/README.md) for complete usage examples and endpoint details.
 
 ## 🦾 Build your own App
 The Kivy project has a great tool named [Buildozer](https://buildozer.readthedocs.io/en/latest/) which can make mobile apps for `Android` & `iOS`
