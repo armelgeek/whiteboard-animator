@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  whiteboard-animator-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: whiteboard-animator-api
+    ports:
+      - "8000:8000"
+    volumes:
+      # Mount input/output directories
+      - ./input_images:/app/input_images
+      - ./output_videos:/app/api/output_videos
+    environment:
+      - API_HOST=0.0.0.0
+      - API_PORT=8000
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/v1/animation/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s

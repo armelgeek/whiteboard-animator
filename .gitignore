@@ -15,6 +15,11 @@ logs/
 bin/
 dist/
 
+# API output directories
+api/output_videos/
+output_videos/
+input_images/
+
 # C extensions
 *.so
 
