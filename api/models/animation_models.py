@@ -25,8 +25,8 @@ class AnimationRequest(BaseModel):
             raise ValueError(f"Platform must be one of {allowed}")
         return v.lower()
     
-    class Config:
-        schema_extra = {
+    model_config = {
+        "json_schema_extra": {
             "example": {
                 "image_path": "/path/to/image.png",
                 "split_len": 10,
@@ -37,6 +37,7 @@ class AnimationRequest(BaseModel):
                 "platform": "linux"
             }
         }
+    }
 
 
 class AnimationResponse(BaseModel):
@@ -47,8 +48,8 @@ class AnimationResponse(BaseModel):
     video_path: Optional[str] = Field(None, description="Path to generated video file")
     processing_time: Optional[float] = Field(None, description="Processing time in seconds")
     
-    class Config:
-        schema_extra = {
+    model_config = {
+        "json_schema_extra": {
             "example": {
                 "status": True,
                 "message": "Animation created successfully",
@@ -56,6 +57,7 @@ class AnimationResponse(BaseModel):
                 "processing_time": 45.2
             }
         }
+    }
 
 
 class ImageAnalysisResponse(BaseModel):
@@ -67,8 +69,8 @@ class ImageAnalysisResponse(BaseModel):
     height: int = Field(..., description="Target video height")
     aspect_ratio: float = Field(..., description="Image aspect ratio")
     
-    class Config:
-        schema_extra = {
+    model_config = {
+        "json_schema_extra": {
             "example": {
                 "image_res": "image.png, video resolution: 1280 x 720",
                 "split_lens": [1, 2, 4, 5, 8, 10, 16, 20, 40, 80],
@@ -77,6 +79,7 @@ class ImageAnalysisResponse(BaseModel):
                 "aspect_ratio": 1.78
             }
         }
+    }
 
 
 class ErrorResponse(BaseModel):
@@ -87,8 +90,8 @@ class ErrorResponse(BaseModel):
     message: str = Field(..., description="Error message")
     details: Optional[str] = Field(None, description="Additional error details")
     
-    class Config:
-        schema_extra = {
+    model_config = {
+        "json_schema_extra": {
             "example": {
                 "status": False,
                 "error": "ValidationError",
@@ -96,3 +99,4 @@ class ErrorResponse(BaseModel):
                 "details": "File does not exist"
             }
         }
+    }
